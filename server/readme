@@ -1,0 +1,6 @@
+username - root
+pswd - 2PORdmAbH1cOZgcK
+
+mongodb+srv://root:<password>@cluster0.i40zpkf.mongodb.net/?retryWrites=true&w=majority
+
+mongodb+srv://root:2PORdmAbH1cOZgcK@cluster0.i40zpkf.mongodb.net/mernstack?retryWrites=true&w=majority

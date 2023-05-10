@@ -1,0 +1,62 @@
+import React,{useEffect,useState} from 'react'
+import Axios from "../../helpers/axios"
+import Layout from '../../components/Layout/layout'
+import MenuHeader from '../../components/MenuHeader/menuheader'
+import {generatePublicUrl} from '../../urlConfig'
+import { useSelector, useDispatch } from "react-redux";
+import {getAllProducts } from "../../actions/product.action.js";
+
+const HomePage = () => {
+    const [name, setName] = useState("");
+    const [quantity, setQuantity] = useState("");
+    const [price, setPrice] = useState("");
+    const [description, setDescription] = useState("");
+    const [productPictures, setProductPictures] = useState([]);
+    const [listOfProducts, setListOfProducts] = useState([])
+    const product = useSelector((state) => state.product);
+    const dispatch = useDispatch();
+    console.log('ppp00000',product);
+
+useEffect(() => {
+    dispatch(getAllProducts())
+}, [])
+
+
+    return (
+          < Layout>
+          {
+            product.products.length > 0
+            ? product.products.map((product) => (
+              <div className="card">
+                <div className="cardHeader">
+                  <div>Samsung mbl under</div>
+                  <button type="button">view all</button>
+                </div>
+                <div style={{display:'flex'}}>
+
+                    <div className="productContainer">
+                      <div className="productImgContainer">
+                        <img src={generatePublicUrl(product.productPictures[0].img)} alt="" />
+                      </div>
+                      <div className="productInfo">
+                        <div>{product.name}</div>
+                        <div>
+                          <span>4.3</span>
+                          <span>33.33</span>
+                        </div>
+                        <div className="productPrice">{product.price}</div>
+                      </div>
+                    </div>
+
+              </div>
+              </div>
+            )):null
+          }
+
+
+          </ Layout >
+
+    )
+}
+
+export default HomePage
